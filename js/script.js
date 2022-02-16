@@ -1,6 +1,16 @@
 "use strict";
 
-const numberOfFilms = +prompt ("Сколько фильмов вы уже посмотрели?", "");
+let numberOfFilms;
+
+function start() {
+    numberOfFilms = +prompt ("Сколько фильмов вы уже посмотрели?", "");
+
+    while (numberOfFilms == '' || numberOfFilms == null || numberOfFilms.length>50 || isNaN(numberOfFilms)) {
+        numberOfFilms = +prompt ("Сколько фильмов вы уже посмотрели?", "");
+    }
+}
+
+start();
 
 const obj = {
     count: numberOfFilms,
@@ -11,24 +21,30 @@ const obj = {
 
     },
     genres: [],
-    privat: false
+    privat: true
 };
 
 
-for (let i = 0; i < 2; i++){
-    const a = prompt('Один из последних просмотренных фильмов?', ''),
-        b = prompt('На сколько оцените его?', '');
-
-    if (a != null && b != null && a != '' && b != '' && a.length<50) {
-        obj.movies[a] = b;
-        console.log ('done');
-    } else {
-        console.log('error');
-        i--;
+function rememberMyFilms() {
+    for (let i = 0; i < 2; i++){
+        const a = prompt('Один из последних просмотренных фильмов?', ''),
+            b = prompt('На сколько оцените его?', '');
+    
+        if (a != null && b != null && a != '' && b != '' && a.length<50) {
+            obj.movies[a] = b;
+            console.log ('done');
+        } else {
+            console.log('error');
+            i--;
+        }
+    
     }
-
 }
 
+rememberMyFilms();
+
+
+function detectPersonalLevel() {
     if (obj.count < 10) {
         console.log("Просмотрено довольно мало фильмов");
     } else if (obj.count >= 10 && obj.count < 30) {
@@ -38,5 +54,26 @@ for (let i = 0; i < 2; i++){
     } else {
         console.log("Ошибка!");
     }
+}    
+
+detectPersonalLevel();
+
+function showMyBd () {
+    if (obj.privat === false) {
+        console.log(obj);
+    }
+}
+
+showMyBd ();
+
+function writYourGenres () {
+    const genA = prompt('Ваш любимый жанр под номером 1', ''),
+          genB = prompt('Ваш любимый жанр под номером 2', ''),
+          genC = prompt('Ваш любимый жанр под номером 3', '');
+    
+    obj.genres = [genA, genB, genC];       
+}
+
+writYourGenres();
 
 console.log(obj);
