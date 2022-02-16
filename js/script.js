@@ -21,7 +21,7 @@ const obj = {
 
     },
     genres: [],
-    privat: true
+    privat: false
 };
 
 
@@ -64,6 +64,12 @@ function showMyBd () {
     }
 }
 
+// function showMyBd (hidden) {
+//     if (!hidden) {
+//         console.log(obj);
+//     }
+// }
+
 showMyBd ();
 
 function writYourGenres () {
@@ -73,6 +79,12 @@ function writYourGenres () {
     
     obj.genres = [genA, genB, genC];       
 }
+
+// function writYourGenres () {
+//     for (let i =1; i <= 3; i++) {
+//         obj.genres[i -1] = prompt(`Ваш любимый жанр под номером ${1}`);
+//     }       
+// }
 
 writYourGenres();
 
